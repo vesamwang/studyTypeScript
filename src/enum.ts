@@ -3,9 +3,11 @@
  */
 
 
-export default function () {
+function enumA() {
     enum Color {Red, Green, Blue}
 
     console.log(Color[1]); // Green
-    console.log(Color.Blue); // Blue
+    console.log(Color.Blue); // 2
 }
+
+enumA();

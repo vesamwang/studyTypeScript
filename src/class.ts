@@ -51,4 +51,102 @@ let a: A = new A('a');
 let b: B = new B('b');
 a = b;
 
+//----------------------- understand private -------------------------
+/**
+ * 与数据成员是`public`相反，如果数据成员是`private`，那么`TS`就认为他们是不同的类型
+ * 比如下面的`A`和`B`他们具有相同的`name`和`constructor`成员且类型相同
+ * 但因为`name`是`private`，因此`TS`认为`A`和`B`是不相同的`type`
+ */
+class A2 {
+    private name: string;
+    constructor(_name: string) {
+        this.name = _name;
+    }
+}
 
+class B2 {
+    private name: string;
+    constructor(_name: string) {
+        this.name = _name;
+    }
+}
+
+let a2: A2 = new A2('a');
+let b2: B2 = new B2('b');
+// Error:(71, 1) TS2322: Type 'B3' is not assignable to type 'A3'.
+// Types have separate declarations of a private property 'name'.
+// a2 = b2;
+
+//----------------------- understand protected -------------------------
+/**
+ * 与数据成员是`protected`与数据成员是`protected`相同
+ */
+class A3 {
+    private name: string;
+    constructor(_name: string) {
+        this.name = _name;
+    }
+}
+
+class B3 {
+    private name: string;
+    constructor(_name: string) {
+        this.name = _name;
+    }
+}
+
+let a3: A3 = new A3('a');
+let b3: B3 = new B3('b');
+// Error:(102, 1) TS2322: Type 'B3' is not assignable to type 'A3'.
+// Types have separate declarations of a private property 'name'.
+// a3 = b3;
+
+//----------------------- static properties -------------------------
+class Grid {
+    static name2: string = 'first';
+    printName() {
+        console.log(Grid.name2);
+    }
+}
+const grid = new Grid();
+grid.printName();
+Grid.name2 = 'second';
+grid.printName();
+
+//----------------------- advance -------------------------
+class Greeter {
+    static standardGreeting = "Hello, there";
+    greeting: string;
+    greet() {
+        if (this.greeting) {
+            return "Hello, " + this.greeting;
+        }
+        else {
+            return Greeter.standardGreeting;
+        }
+    }
+}
+
+let greeter1: Greeter;
+greeter1 = new Greeter();
+console.log(greeter1.greet());
+
+let greeterMaker: typeof Greeter = Greeter;
+greeterMaker.standardGreeting = "Hey there!";
+
+let greeter2: Greeter = new greeterMaker();
+console.log(greeter2.greet());
+
+console.log(greeter1.greet());
+
+//----------------------- Using a class as an interface -------------------------
+class Point {
+    x: number;
+    y: number;
+}
+
+interface Point3d extends Point {
+    z: number;
+}
+
+let point3d: Point3d = {x: 1, y: 2, z: 3};
