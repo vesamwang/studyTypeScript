@@ -12,6 +12,7 @@ function enumA() {
 
 enumA();
 
-enum BusinessType {产品, 销售}
+enum BusinessType {Product, Customer}
 
-console.log(BusinessType.销售);
+console.log(BusinessType.Product);
+console.log(BusinessType['Customer']);
