@@ -1,6 +1,6 @@
 class Student {
     fullName: string;
-    constructor(public firstName, public middleInitial, public lastName) {
+    constructor(public firstName: any, public middleInitial: any, public lastName: any) {
         this.fullName = firstName + " " + middleInitial + " " + lastName;
     }
 }
