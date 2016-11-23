@@ -19,3 +19,15 @@ console.log(DateType[DateType.Day]);
 console.log(DateType["Day"]);
 const w: any = "Week";
 console.log(DateType[w]);
+console.log(DateType[w] as any === DateType.Week);
+
+function enumToArray(obj: any): Array<any> {
+    return Object.keys(obj)
+        .map(k => obj[k])
+        .filter(v => typeof v === 'string');
+}
+
+for (const item of enumToArray(DateType)) {
+    console.log(`DateType key is ${DateType[item]} | value is ${item}`);
+    console.log(DateType[item] === DateType.Day as any);
+}
