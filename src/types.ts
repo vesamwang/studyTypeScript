@@ -4,6 +4,17 @@
 
 export enum DateType {Day, Week, Month}
 
+/*
+DateType {
+0: 'Day',
+1: 'Week',
+2: 'Month',
+Day: 0,
+Week: 1,
+Month: 2
+}
+ */
+
 export interface UnitType {
     key: string;
     value: string;
@@ -19,7 +30,7 @@ console.log(DateType[DateType.Day]);
 console.log(DateType["Day"]);
 const w: any = "Week";
 console.log(DateType[w]);
-console.log(DateType[w] as any === DateType.Week);
+console.log(DateType[w] === DateType.Week as any);
 
 function enumToArray(obj: any): Array<any> {
     return Object.keys(obj)
@@ -29,5 +40,5 @@ function enumToArray(obj: any): Array<any> {
 
 for (const item of enumToArray(DateType)) {
     console.log(`DateType key is ${DateType[item]} | value is ${item}`);
-    console.log(DateType[item] === DateType.Day as any);
+    // console.log(DateType[item] === DateType.Day as any);
 }
